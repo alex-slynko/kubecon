@@ -55,6 +55,8 @@ instance_groups:
       admin-username: admin
       admin-password: ((kubo-admin-password))
       kubelet-password: ((kubelet-password))
+      kube-proxy-password: "((kube-proxy-password))"
+      kube-scheduler-password: "((kube-scheduler-password))"
       backend_port: 8443 # Bosh links hack
       port: 8443
       authorization-mode: &authorization_mode rbac
@@ -64,6 +66,8 @@ instance_groups:
     release: kubo
     properties:
       kubelet-password: ((kubelet-password))
+      kube-proxy-password: "((kube-proxy-password))"
+      kube-scheduler-password: "((kube-scheduler-password))"
       tls:
         kubernetes: ((tls-kubernetes))
   - name: kubernetes-controller-manager
@@ -93,19 +97,21 @@ instance_groups:
   - name: docker
     release: docker
     properties:
-      docker:
-        flannel: true
-        iptables: false
-        ip_masq: false
-        log_level: error
-        storage_driver: overlay
-        default_ulimits: [ "nofile=65536" ]
+      bip: 172.17.0.1/24
+      default_ulimits: [ "nofile=65536" ]
+      flannel: true
+      ip_masq: false
+      iptables: false
+      log_level: error
+      storage_driver: overlay
       env: {}
   - name: kubeconfig
     release: kubo
     properties:
       kubernetes-api-url: "https://((kubernetes_master_host)):8443"
       kubelet-password: ((kubelet-password))
+      kube-proxy-password: "((kube-proxy-password))"
+      kube-scheduler-password: "((kube-scheduler-password))"
       tls:
         kubernetes: ((tls-kubernetes))
   - name: cloud-provider
@@ -160,3 +166,7 @@ variables:
     - kubernetes.default.svc
     - kubernetes.default.svc.cluster.local
     - master.kubo
+- name: kube-proxy-password
+  type: password
+- name: kube-scheduler-password
+  type: password

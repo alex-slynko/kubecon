@@ -20,7 +20,7 @@ wget -q --show-progress -nc https://github.com/cloudfoundry-incubator/kubo-relea
 
 wget -q --show-progress -nc https://github.com/pivotal-cf-experimental/kubo-etcd/releases/download/v4/kubo-etcd.4.tgz
 
-wget -q --show-progress -nc --content-disposition https://bosh.io/d/github.com/cf-platform-eng/docker-boshrelease?v=28.0.1
+wget -q --show-progress -nc --content-disposition https://github.com/cloudfoundry-community/docker-boshrelease/releases/download/v30.1.4/docker-30.1.4.tgz
 wget -q --show-progress -nc --content-disposition https://bosh.io/d/github.com/cloudfoundry/bosh-dns-release?v=0.0.11
 
 wget -q --show-progress -nc https://s3.amazonaws.com/bosh-core-stemcells/warden/bosh-stemcell-3468.5-warden-boshlite-ubuntu-trusty-go_agent.tgz
